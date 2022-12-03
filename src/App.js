@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+
 import './App.css';
+import {Routes,Route} from "react-router-dom"
+import LogIn from "./components/LogIn";
+import SignUp from "./components/SignUp";
+import WelCome from "./components/Welcome";
+import NoPage from "./components/Nopage";
+import { useState } from 'react';
 
 function App() {
+  const [userDataApp,setUserDataApp]=useState({})
+  const getData=(data)=>setUserDataApp(data);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     
+    <Routes>     
+     <Route path="/" element={ <LogIn abc={userDataApp}/>}/>
+     <Route path="signup" element={ <SignUp onClick={getData}/>}/>
+     <Route path="Welcome" element={ <WelCome data={userDataApp}/>}/>
+     <Route path="*" element={ <NoPage/>}/>
+     </Routes>
+
     </div>
   );
 }
